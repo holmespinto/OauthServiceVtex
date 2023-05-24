@@ -1,0 +1,43 @@
+{
+  "memory": 512,
+  "ttl": 43200,
+  "timeout": 1000,
+  "minReplicas": 1,
+  "maxReplicas": 5,
+  "workers": 1,
+  "routes": {
+    "getSchema": {
+      "path": "/_v/chedraui-cms",
+      "public": true
+    },
+    "getUserFavouriteProducts": {
+      "path": "/_v/getUserFavouriteProducts",
+      "public": true
+    },
+    "hollidays": {
+      "path": "/_v/hollidays/:an",
+      "public": true
+    },
+    "startPasswordLess": {
+      "path": "/_v/startPasswordLess/:telefono",
+      "public": true
+    },"updateUserInfo": {
+      "path": "/_v/updateUserInfo/:user_id",
+      "public": true
+    },
+    "auth": {
+      "path": "/_v/auth/:email",
+      "public": true
+    }
+  },
+  "events": {
+    "allStates": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["order-status-updated"]
+    },
+    "someStates": {
+      "sender": "vtex.orders-broadcast",
+      "topics": ["payment-accepted", "payment-approved"]
+    }
+  }
+}

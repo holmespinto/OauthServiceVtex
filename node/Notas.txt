@@ -1,0 +1,32 @@
+* No hay manera de crear monederos o giftcards para los usuarios
+* No se puede verificar que en el checkout ya esté disponible el pago con giftcards porque no se puede llegar a la sección de pago
+* Los datos regresados al leer un giftcard (monedero) no son suficientes para traducirlos al formato que espera vtex
+* Los datos regresados al crear una transacción tampoco son suficientes para traducirlos al formato que espera vtex
+* No está claro como realizar las solicitudes de cancelación y settlement (ambas, obtener y crear)
+* El servidor https://chapimngtqa.azure-api.net tarda por lo menos 3 segundos en responder, a veces
+  falla por timeout (con 30 segundos de timeout)
+* La conexión de CloudFront (por parte de VtexIO) https://chapimngtqa.azure-api.net a veces no se puede realizar por razones desconocidas
+  para mí
+* Es necesario poder obtener un giftcard por medio de su id (número de tarjeta por ejemplo)
+
+Por parte de corebiz:
+* El código para el giftcard hub está momentaneamente en el repo de componentes hasta que vtex apruebe un repo exclusivo para esto
+    App: chedrauimx.giftcard-protocol@0.x
+* Todas estas notas aplican para MiMonedero, el pago de tipo proveedor está pendiente de revisar aunque probablemente apliquen las mismas
+    observaciones
+* Antes de hablar con chedraui acerca de gustaría platicar con Rodrigo para verificar que esté haciendo las cosas bien y no esté
+    hablando a lo loco
+* Tengo dudas acerca del diagrama en https://developers.vtex.com/vtex-rest-api/reference/giftcard-hub-api-overview
+  Señala que se hace un request a /giftcardproviders/{providerId}/giftcards/_search y este parece que a su vez hace el request al
+  serviceUrl configurado en el provider, pero ese endpoint siempre falla con un error 500 por alguna u otra razón.
+  Sí se está mapeando con la función parseGiftCardToVtex
+* Una vez que los endpoints de listado de giftcards funcionen correctamente, va a aparecer como método de pago automágicamente en el checkout?
+
+
+Cosas pendientes de Krisna:
+* enviar id del monedero en endpoint de transaccion
+* compartir endpoint de abono
+* compartir endpoint de listar abonos
+* endpoint para obtener monedero con su id
+* verificar si se puede poner la fecha de emision en el listado de monederos
+* IMPORTANTE: que el servidor responda mas rapidamente
